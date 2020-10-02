@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Archipelago {
 
@@ -28,4 +27,12 @@ public class Archipelago {
         return archipelago;
     }
 
+    public Island getIslandFromName(String name){
+        for(Island island : archipelago){
+            if(island.getName().equals(name)){
+                return island;
+            }
+        }
+        return null;
+    }
 }

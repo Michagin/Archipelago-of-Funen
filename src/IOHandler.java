@@ -57,10 +57,16 @@ public class IOHandler {
         return System.getProperty("os.name");
     }
 
-    private Ticket loadTicketFileAsBin(String filename) {
+    public Ticket loadTicketFileAsBin() {
+        String filename = null;
         loadFileChooser = new JFileChooser(userHome, FileSystemView.getFileSystemView());
         loadFileChooser.setFileFilter(new FileNameExtensionFilter("Ticket", "tck"));
         loadFileChooser.setDialogTitle("Please find your ticket.");
+        int selectedFile = loadFileChooser.showOpenDialog(null);
+
+        if(selectedFile == JFileChooser.APPROVE_OPTION){
+            filename = loadFileChooser.getSelectedFile().getAbsolutePath();
+        }
 
         try {
             ObjectInputStream bin = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filename)));

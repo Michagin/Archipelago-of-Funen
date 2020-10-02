@@ -4,6 +4,7 @@ public class Island implements Serializable {
     final transient int serialVersionUID = 1337;
 
     private String name;
+    private String info;
 
     public Island(String name) {
         this.name = name;
@@ -13,4 +14,11 @@ public class Island implements Serializable {
         return name;
     }
 
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info){
+        this.info = info;
+    }
 }
