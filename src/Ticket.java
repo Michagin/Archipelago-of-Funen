@@ -7,6 +7,10 @@ public class Ticket implements Serializable {
     Island to;
     Island from;
 
+    public Ticket(){
+
+    }
+
     public Ticket(Island to, Island from) {
         this.to = to;
         this.from = from;

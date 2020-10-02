@@ -1,10 +1,12 @@
 import java.util.Scanner;
 
 public class Printer {
-    Customer customer;
-    Scanner nameScanner = new Scanner(System.in);
+    private final Customer customer;
+    private final Scanner nameScanner = new Scanner(System.in);
+    private final Scanner destinationScanner = new Scanner(System.in);
+    String destination;
 
-    public Printer(Customer customer){
+    public Printer(Customer customer) {
         this.customer = customer;
     }
 
@@ -13,11 +15,14 @@ public class Printer {
         System.out.println(ticket.toString());
     }
 
-    public void getTicketInfo(){
+    public void makeTicketInfo(){
         System.out.println("Please enter your full name");
         customer.setName(nameScanner.nextLine());
 
-        System.out.println("Greetings " + customer.getName() + ".\nWhere would you like to go today?");
+        System.out.println("Greetings " + customer.getName() + ".");
+
+        System.out.println("Where would you like to go today?");
+        destination = destinationScanner.nextLine();
     }
 }
 
