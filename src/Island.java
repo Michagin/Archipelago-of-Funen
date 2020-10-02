@@ -8,4 +8,9 @@ public class Island implements Serializable {
     public Island(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

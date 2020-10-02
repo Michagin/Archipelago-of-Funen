@@ -15,9 +15,4 @@ public class Ticket implements Serializable {
         this.to = to;
         this.from = from;
     }
-
-    @Override
-    public String toString(){
-        return "Denne billet er gyldig fra " + from + " til " + to;
-    }
 }
