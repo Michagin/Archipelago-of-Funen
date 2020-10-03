@@ -5,9 +5,11 @@ public class Island implements Serializable {
 
     private String name;
     private String info;
+    private String description;
 
-    public Island(String name) {
+    public Island(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
     public String getName() {
@@ -20,5 +22,9 @@ public class Island implements Serializable {
 
     public void setInfo(String info){
         this.info = info;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

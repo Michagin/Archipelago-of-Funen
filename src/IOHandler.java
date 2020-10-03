@@ -8,19 +8,10 @@ import java.util.List;
 public class IOHandler {
 
     private Ticket ticket = null;
+    private final String fileEnding = ".tck";
     private final String userHome = System.getProperty("user.home");
     private JFileChooser saveFileChooser;
     private JFileChooser loadFileChooser;
-
-
-    public IOHandler(Ticket ticket) {
-        this.ticket = ticket;
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-    }
 
     public IOHandler(){
         try {
@@ -30,10 +21,11 @@ public class IOHandler {
         }
     }
 
-    public void saveToDisk() throws IOException {
+
+    public void saveToDisk(Ticket ticket) throws IOException {
         String filename;
         saveFileChooser = new JFileChooser(userHome, FileSystemView.getFileSystemView());
-        saveFileChooser.setFileFilter(new FileNameExtensionFilter("Ticket", "tck"));
+        saveFileChooser.setFileFilter(new FileNameExtensionFilter("Ticket", fileEnding));
         saveFileChooser.setDialogTitle("Please save your ticket somewhere safe.");
 
         int selectedFile = saveFileChooser.showSaveDialog(null);
@@ -43,12 +35,15 @@ public class IOHandler {
             filename = fileToSave.getAbsolutePath();
 
             if (getOS().matches("Windows...")) {
-                if (!fileToSave.getName().endsWith(".ticket")) {
-                    filename = fileToSave.getAbsolutePath() + ".tck";
+                if (!fileToSave.getName().endsWith(fileEnding)) {
+                    filename = fileToSave.getAbsolutePath() + fileEnding;
                 }
             }
             System.out.println("saving file to: " + fileToSave.getAbsolutePath());
             saveFileAsBin(filename);
+        }
+        else if(selectedFile == JFileChooser.CANCEL_OPTION | selectedFile == JFileChooser.ERROR_OPTION){
+            System.out.println("Window was closed. No ticket dispensed.");
         }
 
     }

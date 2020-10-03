@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Clerk {
@@ -39,8 +40,9 @@ public class Clerk {
                             System.out.println("You have selected \"Get info about island\". What island would you like info about?");
                             prettyPrintIslands();
                             String selectedIsland = destinationScanner.nextLine();
-                            confirmDestination(selectedIsland);
-
+                            if(confirmDestination(selectedIsland)!= null){
+                                System.out.println(confirmDestination(selectedIsland).getDescription()+"\n");
+                            }
                             break;
                         default : System.out.println("Your menu choice was not recorded. Please select a valid menu item.");
                     }
@@ -56,6 +58,13 @@ public class Clerk {
         System.out.println("Where would you like to go today?");
         System.out.println("Please select one of our incredible up-scale high-end fantastic destinations:");
         getTicketInfoFromCustomer();
+
+        System.out.println("Here is your ticket.");
+        try {
+            io.saveToDisk(new Ticket(customer, customer.getDestination(),customer.getCurrentLocation()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void getNameFromCustomer(){

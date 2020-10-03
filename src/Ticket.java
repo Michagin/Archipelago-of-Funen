@@ -4,14 +4,17 @@ public class Ticket implements Serializable {
     final transient int serialVersionUID = 1337;
 
     private double price;
-    Island to;
-    Island from;
+
+    private Island to;
+    private Island from;
+    private Customer customer;
 
     public Ticket(){
 
     }
 
-    public Ticket(Island to, Island from) {
+    public Ticket(Customer customer, Island to, Island from) {
+        this.customer = customer;
         this.to = to;
         this.from = from;
     }

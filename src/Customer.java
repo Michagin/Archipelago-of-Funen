@@ -6,6 +6,12 @@ public class Customer implements Serializable {
 
     private String name;
     private Island destination;
+    private Island currentLocation;
+
+    public Customer(Island currentLocation){
+        this.currentLocation = currentLocation;
+
+    }
 
     public String getName() {
         return name;
@@ -21,5 +27,9 @@ public class Customer implements Serializable {
 
     public void setDestination(Island destination) {
         this.destination = destination;
+    }
+
+    public Island getCurrentLocation(){
+        return currentLocation;
     }
 }
