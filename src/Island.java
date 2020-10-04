@@ -1,10 +1,9 @@
 import java.io.Serializable;
 
-public class Island implements Serializable {
-    private static final long serialVersionUID = 1337L;
+public class Island implements Serializable {           //Island must implement the Serializable interface to tell the compiler that objects from this class are going to be saved to a file.
+    private static final long serialVersionUID = 1337L; //unique ID used for serialization
 
     private String name;
-    private String info;
     private String description;
 
     public Island(String name, String description) {
@@ -14,14 +13,6 @@ public class Island implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info){
-        this.info = info;
     }
 
     public String getDescription() {

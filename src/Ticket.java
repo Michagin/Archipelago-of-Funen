@@ -1,13 +1,12 @@
 import java.io.Serializable;
 
-public class Ticket implements Serializable {
-    private static final long serialVersionUID = 1337L;
+public class Ticket implements Serializable {           //Ticket must implement the Serializable interface to tell the compiler that objects from this class are going to be saved to a file.
+    private static final long serialVersionUID = 1337L; //unique ID used for serialization (saving and loading files).
 
-    private double price;
-
-    private Island to;
-    private Island from;
-    private String customerName;
+    private String price;                               //used String instead of float due to localization. (, instead of .)
+    private final Island to;
+    private final Island from;
+    private final String customerName;
     private String creationTime;
 
     public Ticket(String name, Island to, Island from) {
@@ -33,12 +32,16 @@ public class Ticket implements Serializable {
         return creationTime;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
 
     public String getCustomerName() {
         return customerName;
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 }

@@ -1,3 +1,5 @@
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -5,9 +7,13 @@ import java.util.Random;
 public class Archipelago {
 
     ArrayList<Island> archipelago;
+    Random random = new Random();
 
+    /**
+     * This constructor creates a collection of islands as an {@ArrayList}.
+     */
     public Archipelago(){
-        archipelago = new ArrayList<Island>();
+        archipelago = new ArrayList<>();
         archipelago.addAll(Arrays.asList(
                 new Island("Avernakø", "Tag til Avernakø og oplev øens fantastiske natur. Tag fiskestangen med og se, om du kan være heldig at fange en fisk eller to."),
                 new Island("Bjørnø", "Gå hele Bjørnø rundt på et par timer eller bliv hængende lidt længere, hvis du vil helt tæt på naturen. Øen er nemlig perfekt til vandreture."),
@@ -28,6 +34,11 @@ public class Archipelago {
         return archipelago;
     }
 
+    /**
+     * Goes through the collection and returns an island, if matched with the name provided.
+     * @param name the name of the island to be searched for.
+     * @return If island is found, the island is returns, else null is returned.
+     */
     public Island getIslandFromName(String name){
         for(Island island : archipelago){
             if(island.getName().equals(name)){
@@ -37,8 +48,22 @@ public class Archipelago {
         return null;
     }
 
+    /**
+     * Gets a random island from the collection of islands.
+     * @return a random island-object.
+     */
     public Island getRandomIsland(){
-        Random randomIsland = new Random();
-        return archipelago.get(randomIsland.nextInt(archipelago.size()));
+        return archipelago.get(random.nextInt(archipelago.size()));
+    }
+
+    /**
+     * This methode generates a random floating point number and rounds it up to two decimal points.
+     * The use of {@DecimalFormat} converts the floating point number into a string.
+     * @return A float number from 1 - 100 as a string, formatted with only two decimal points.
+     */
+    public String makePrice(){
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+        return df.format(random.nextFloat()*100);
     }
 }
