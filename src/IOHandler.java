@@ -2,9 +2,6 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
 
 public class IOHandler {
 
@@ -41,6 +38,23 @@ public class IOHandler {
 
         if (selectedFile == JFileChooser.APPROVE_OPTION) {                                                                //if 'save' was pressed.
             File fileToSave = saveFileChooser.getSelectedFile();                                                          //get the file from the file-chooser that was specified.
+            if (fileToSave.exists())
+            {
+                int option = JOptionPane.showConfirmDialog(null,"The file exists, overwrite?","Existing file",JOptionPane.YES_NO_CANCEL_OPTION); //if file already exists, ask to overwrite.
+                switch(option){
+                    case JOptionPane.YES_OPTION:
+                        saveFileChooser.approveSelection();
+                        return;
+                    case JOptionPane.NO_OPTION:
+                    case JOptionPane.CLOSED_OPTION:
+                        System.out.println("Window was closed. No ticket dispensed.");
+                        return;
+                    case JOptionPane.CANCEL_OPTION:
+                        saveFileChooser.cancelSelection();
+                        System.out.println("Window was closed. No ticket dispensed.");
+                        return;
+                }
+            }
             filename = fileToSave.getAbsolutePath();                                                                      //get the absolute path to that file.
 
             if (getOS().matches("(\\bWindows\\b)\\s?(([0-9]{1,2})|\\s?(Vista))?")) {                                //checks if you are on windows.
