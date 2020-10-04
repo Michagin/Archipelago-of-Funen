@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public class Island implements Serializable {
-    final transient int serialVersionUID = 1337;
+    private static final long serialVersionUID = 1337L;
 
     private String name;
     private String info;
